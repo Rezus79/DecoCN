@@ -20,6 +20,9 @@ public class HomeController {
 		return "home/accueil";
 	}
 	
-
+	@GetMapping("/private/gerer")
+	String Gerer() {
+		return "home/gerer";
+	}
 
 }
