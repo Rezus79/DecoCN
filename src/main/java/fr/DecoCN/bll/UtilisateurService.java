@@ -9,7 +9,7 @@ import fr.DecoCN.bo.Utilisateur;
 public interface UtilisateurService {
 
 	
-Utilisateur CreerUtilisateur(Utilisateur utilisateur);
+    Utilisateur CreerUtilisateur(Utilisateur utilisateur);
 	
 	List<Utilisateur> consulterUtilisateurs();
 	
