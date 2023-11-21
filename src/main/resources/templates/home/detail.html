@@ -35,7 +35,7 @@ layout:decorate="~{layouts/main-layout}">
                 <div class="mb-3" >
                     <label for="nomDeFichier" class="form-label">Nom de fichier</label>
                     <input class="form-control" id="moyenPayement" th:value="${fiche.nomDeFichier}" readonly>  
-                   
+                    <a th:href="@{'/private/detail/' + ${fiche.id} + '/download'}">Télécharger le fichier</a>
                   </div>
                 <div class="form-check form-switch mb-3">
                   <label for="validation" class="form-check-label">Validation</label>

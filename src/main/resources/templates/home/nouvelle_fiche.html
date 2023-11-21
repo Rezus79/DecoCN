@@ -16,12 +16,13 @@ layout:decorate="~{layouts/main-layout}">
             <div class="text-center mt-5 mb-5">
                 <h1>nouvelle demande</h1>
             </div>
+            <form th:action="@{/nouvelle_fiche}" method="post" enctype="multipart/form-data"></form>
             <div class="col-4 offset-4 mb-3 mt-3">
-                <form th:action="@{/nouvelle_fiche}" method="post" enctype="multipart/form-data">
-                    <div >
+                
+                    
                         <div class="mb-3">
                             <label class="form-label" for="email">Email :</label>
-                            <input class="form-label" type="email" id="email" th:field="*{fiche.email}" />
+                            <input class="form-control" type="email" id="email" th:field="*{fiche.email}" />
                         </div>
                         <div class="mb-3">   
                             <label class="form-label" for="support"> support :</label>
@@ -32,20 +33,20 @@ layout:decorate="~{layouts/main-layout}">
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label" for="dimension">Dimension :</label>
-                            <input class="form-label" type="text" id="dimension"  th:field="*{fiche.dimension}">
+                            <label class="form-label" for="dimension">Dimension : max 25cm / 35 cm</label>
+                            <input class="form-control" type="text" id="dimension"  th:field="*{fiche.dimension}">
                         </div>
                         <div class="mb-3">   
                             <label class="form-label" for="file">choisir votre fichier:</label>
-                            <input class="btn btn-outline-secondary" type="file" id="file" name="file" />
+                            <input class="form-control btn btn-outline-secondary" type="file" id="file" name="file" />
                         </div> 
-                    </div>
+                    
 
                     <button id="lien1" class="btn btn-outline-secondary" type="submit">Envoyer</button>
-                </form>
+                
 
             </div>
-
+        </form>
 
         </main>
 
