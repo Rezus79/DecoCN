@@ -88,4 +88,10 @@ public class FicheController {
             return ResponseEntity.notFound().build();
         }
     }
+	
+	@GetMapping("/private/modifier")
+	String modifierFiche(@PathParam("id") long id,Model model) {
+		model.addAttribute("fiche", ficheService.getFicheById(id));
+		return "home/modifier";
+	}
 }

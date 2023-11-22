@@ -16,7 +16,7 @@ layout:decorate="~{layouts/main-layout}">
             <div class="text-center mt-5 mb-5">
                 <h1>nouvelle demande</h1>
             </div>
-            <form th:action="@{/nouvelle_fiche}" method="post" enctype="multipart/form-data"></form>
+            <form th:action="@{/nouvelle_fiche}" method="post" enctype="multipart/form-data">
             <div class="col-4 offset-4 mb-3 mt-3">
                 
                     
@@ -33,8 +33,11 @@ layout:decorate="~{layouts/main-layout}">
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label" for="dimension">Dimension : max 25cm / 35 cm</label>
-                            <input class="form-control" type="text" id="dimension"  th:field="*{fiche.dimension}">
+                            <h6> Dimension max 35 cm / 25 cm</h6>
+                            <label class="form-label" for="longueur">Longueur :</label>
+                            <input class="form-control" type="number" id="longueur"  th:field="*{fiche.longueur}" th:min="1" th:max="35" required>
+                            <label class="form-label" for="Largeur">Largeur :</label>
+                            <input class="form-control" type="number" id="Largeur"  th:field="*{fiche.Largeur}" th:min="1" th:max="25" required>
                         </div>
                         <div class="mb-3">   
                             <label class="form-label" for="file">choisir votre fichier:</label>
