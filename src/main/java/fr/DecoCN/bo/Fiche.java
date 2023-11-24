@@ -35,6 +35,8 @@ public class Fiche {
 
 	private boolean refus;
 
+	
+	
 	public Fiche() {
 	}
 
@@ -49,6 +51,7 @@ public class Fiche {
 		this.contenu = contenu;
 		this.validation = false;
 		this.refus = false;
+		
 	}
 
 	public Long getId() {
@@ -122,5 +125,9 @@ public class Fiche {
 	public void setRefus(boolean refus) {
 		this.refus = refus;
 	}
+
+
+	
+	
 
 }

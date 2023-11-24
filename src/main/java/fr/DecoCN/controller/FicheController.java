@@ -56,7 +56,7 @@ public class FicheController {
 		listeFiches.addAll(ficheService.consulterFiches());
 		
 		for (Fiche fiche : listeFiches) {
-			if (!fiche.isValidation() || !fiche.isRefus()) {
+			if (!fiche.isValidation() && !fiche.isRefus()) {
 				listefichesAValide.add(fiche);
 			}
 		}
@@ -94,4 +94,61 @@ public class FicheController {
 		model.addAttribute("fiche", ficheService.getFicheById(id));
 		return "home/modifier";
 	}
+	
+	@PostMapping("/private/modifier")
+	String modifierFiche(@RequestParam("file") MultipartFile file,Fiche fiche) {
+		try {
+			Fiche existingFiche = ficheService.getFicheById(fiche.getId());
+			
+	        if (file != null && !file.isEmpty()) {
+	            fiche.setNomDeFichier(file.getOriginalFilename());
+	            fiche.setContenu(file.getBytes());
+	        }
+	        
+	        if (fiche.isValidation()) {
+	        	existingFiche.setValidation(true);
+	        }
+	        if (fiche.isRefus()) {
+	        	existingFiche.setRefus(true);
+	        }
+		ficheService.modifierFiche(existingFiche,fiche.getId());
+		} catch (Exception e) {
+	        e.printStackTrace();
+	    }		
+		return "redirect:/private/liste_commandes";
+	}
+	
+	@GetMapping("/private/liste_valides")
+	String listeValides(Model model) {
+		List<Fiche> listeFiches = new ArrayList<Fiche>();
+		List<Fiche> listefichesValide = new ArrayList<Fiche>();
+		listeFiches.addAll(ficheService.consulterFiches());
+		
+		for (Fiche fiche : listeFiches) {
+			if (fiche.isValidation()) {
+				listefichesValide.add(fiche);
+			}
+		}
+		
+		model.addAttribute("listeFiches", listefichesValide);
+		return "home/liste_valides";
+	}
+	
+	@GetMapping("/private/liste_refus")
+	String listeRefuses(Model model) {
+		List<Fiche> listeFiches = new ArrayList<Fiche>();
+		List<Fiche> listefichesRefus = new ArrayList<Fiche>();
+		listeFiches.addAll(ficheService.consulterFiches());
+		
+		for (Fiche fiche : listeFiches) {
+			if (fiche.isRefus()) {
+				listefichesRefus.add(fiche);
+			}
+		}
+		
+		model.addAttribute("listeFiches", listefichesRefus);
+		return "home/liste_refus";
+	}
+	
+	
 }

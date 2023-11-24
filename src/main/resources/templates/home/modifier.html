@@ -16,19 +16,19 @@ layout:decorate="~{layouts/main-layout}">
                 <h1>Détail de la demande</h1>
             </div>
             
-            <form th:action="@{/nouvelle_fiche}" method="post" enctype="multipart/form-data">
+            <form th:action="@{/private/modifier}" method="post" enctype="multipart/form-data">
             <div class="col-4 offset-4 mb-3">
                 <div class="mb-3" >
                     <label for="id" class="form-label">Id</label>
-                    <input  class="form-control" id="id" th:value="${fiche.id}" readonly>
+                    <input  class="form-control" id="id" name="id" th:value="${fiche.id}" th:field="*{fiche.id}" readonly>
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email"  th:value="${fiche.email}" readonly>
+                    <input type="email" class="form-control" id="email"  th:value="${fiche.email}" th:field="*{fiche.email}" readonly>
                   </div>
                 <div class="mb-3">
                   <label for="support" class="form-label">Support</label>
-                  <input type="text" class="form-control" id="email"  th:value="${fiche.email}" readonly>
+                  <input type="text" class="form-control" id="support"  th:value="${fiche.support}" th:field="*{fiche.support}" readonly>
                 </div>
                 <div class="mb-3">
                   <h6>Dimension</h6>
@@ -37,22 +37,25 @@ layout:decorate="~{layouts/main-layout}">
                   <label class="form-label" for="Largeur">Largeur :</label>
                   <input class="form-control" type="text" id="Largeur"  th:field="*{fiche.Largeur}" >
                 </div>
-                <div class="mb-3" >
+                <!--<div class="mb-3" >
                     <label for="nomDeFichier" class="form-label">Nom de fichier</label>
-                    <input class="form-control" id="moyenPayement" th:value="${fiche.nomDeFichier}" readonly>  
-                    <a th:href="@{'/private/detail/' + ${fiche.id} + '/download'}">Télécharger le fichier</a>
-                  </div>
+                    <input class="form-control" id="nomDeFichier" th:value="${fiche.nomDeFichier}" th:field="*{fiche.nomDeFichier}" readonly>
+                    <label for="file" class="form-label">fichier</label>  
+                    <input class="form-control" id="file"  name="file" th:value="${fiche.contenu}" th:field="*{fiche.contenu}" readonly>
+                  </div>-->
+
+                  <input type="file" class="form-control" id="file" name="file">  
                 <div class="form-check form-switch mb-3">
                   <label for="validation" class="form-check-label">Validation</label>
-                  <input type="checkbox" role="switch" class="form-check-input" id="validation"  th:value="${fiche.validation}" >
+                  <input type="checkbox" role="switch" class="form-check-input" id="validation"  th:value="${fiche.validation}" th:field="*{fiche.validation}" >
                 </div>
                 <div class="form-check form-switch mb-3">
                     <label for="refus" class="form-check-label">Refus</label>
-                    <input type="checkbox" role="switch" class="form-check-input" id="refus"  th:value="${fiche.refus}" >
+                    <input type="checkbox" role="switch" class="form-check-input" id="refus"  th:value="${fiche.refus}" th:field="*{fiche.refus}">
                   </div>
 
-                  <button type="submit"  class="btn btn-info"><a class="nav-link" th:href="@{/private/liste_commandes}">Valider</a></button>
-                <button type="button"  class="btn btn-info"><a class="nav-link" th:href="@{/private/liste_commandes}">Retour</a></button>
+                  <button type="submit"  class="btn btn-info"><a class="nav-link">Valider</a></button>
+                <button type="button"  class="btn btn-outline-secondary"><a class="nav-link" th:href="@{/private/liste_commandes}">Retour</a></button>
               
             </div>
             </form>

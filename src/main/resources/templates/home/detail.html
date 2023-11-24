@@ -26,7 +26,7 @@ layout:decorate="~{layouts/main-layout}">
                   </div>
                 <div class="mb-3">
                   <label for="support" class="form-label">Support</label>
-                  <input type="text" class="form-control" id="email"  th:value="${fiche.email}" readonly>
+                  <input type="text" class="form-control" id="email"  th:value="${fiche.support}" readonly>
                 </div>
                 <div class="mb-3">
                   <h6>Dimension</h6>
@@ -37,7 +37,7 @@ layout:decorate="~{layouts/main-layout}">
                 </div>
                 <div class="mb-3" >
                     <label for="nomDeFichier" class="form-label">Nom de fichier</label>
-                    <input class="form-control" id="moyenPayement" th:value="${fiche.nomDeFichier}" readonly>  
+                    <input class="form-control" id="nomDeFichier" th:value="${fiche.nomDeFichier}" readonly>  
                     <a th:href="@{'/private/detail/' + ${fiche.id} + '/download'}">Télécharger le fichier</a>
                   </div>
                 <div class="form-check form-switch mb-3">
