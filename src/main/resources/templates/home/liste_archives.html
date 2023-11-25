@@ -13,7 +13,7 @@ layout:decorate="~{layouts/main-layout}">
 	  
 	    <main layout:fragment="content">
             <div class="text-center mt-5 mb-5">
-                <h1>liste des commande validées</h1>
+                <h1>liste des commande archivées</h1>
             </div>
             <div class="text-center mt-3 col-6 offset-3 d-grid">
                 
@@ -30,9 +30,7 @@ layout:decorate="~{layouts/main-layout}">
                             <td th:text="${fiche.id}"></td>
                             <td th:text="${fiche.email}"></td>
                             <td>
-                                <a id="lien1" class="btn btn-outline-secondary" th:href="@{/private/detail(id=${fiche.id})}"><i > Détail</i></a>
-                                <a id="lien1" class="btn btn-outline-warning" th:href="@{/private/modifier(id=${fiche.id})}"><i > Modifier</i></a>
-                                <a id="lien1" class="btn btn-outline-warning" th:href="@{/private/archiver(id=${fiche.id})}"><i > Archiver</i></a>
+                                <a id="lien1" class="btn btn-outline-secondary" th:href="@{/private/detailArchives(id=${fiche.id})}"><i > Détail</i></a>
                                 <a id="lien1" class="btn btn-outline-danger" th:href="@{/private/modifier(id=${fiche.id})}"><i > Supprimer</i></a>
                             </td>
                         </tr>

@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import fr.DecoCN.bll.ArchivesService;
 import fr.DecoCN.bll.FicheService;
+import fr.DecoCN.bo.Archives;
 import fr.DecoCN.bo.Fiche;
 import jakarta.websocket.server.PathParam;
 
@@ -26,6 +28,9 @@ public class FicheController {
 
 	@Autowired
 	FicheService ficheService;
+	
+	@Autowired
+	ArchivesService archivesService;
 	
 	@GetMapping("/nouvelle_fiche")
 	String nouvelleFiche(Model model) {
@@ -150,5 +155,47 @@ public class FicheController {
 		return "home/liste_refus";
 	}
 	
+	@GetMapping("/private/archiver")
+	String archiver(@PathParam("id") long id,Model model) {
+		model.addAttribute("fiche", ficheService.getFicheById(id));
+		return "home/archiver";
+	}
 	
+	@PostMapping("/private/archiver")
+	String Archiver(@RequestParam("file") MultipartFile file,Fiche fiche) {
+		try {
+			Fiche existingFiche = ficheService.getFicheById(fiche.getId());
+			
+	        if (file != null && !file.isEmpty()) {
+	            fiche.setNomDeFichier(file.getOriginalFilename());
+	            fiche.setContenu(file.getBytes());
+	        }
+	        
+	        
+		archivesService.CreerArchives(existingFiche);
+		ficheService.supprimerFiche(fiche.getId());
+		} catch (Exception e) {
+	        e.printStackTrace();
+	    }		
+		return "redirect:/private/liste_archives";
+	}
+	
+	
+	@GetMapping("/private/liste_archives")
+	String listeArchives(Model model) {
+		List<Archives> listeArchives = new ArrayList<Archives>();
+		
+		listeArchives.addAll(archivesService.consulterArchives());
+		
+		
+		
+		model.addAttribute("listeFiches", listeArchives);
+		return "home/liste_archives";
+	}
+	
+	@GetMapping("/private/detailArchives")
+	String fichedetailArchives(@PathParam("id") long id, Model model) {
+		model.addAttribute("fiche" , archivesService.getArchivesById(id));
+		return "home/detail";
+	}
 }
