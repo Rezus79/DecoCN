@@ -1,7 +1,24 @@
-
+body{
+    background-image: url('img/font.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
 main{
     min-height: 80vh;
+    
+}
+
+h1{
+    color: #7a7979;
+}
+
+h6{
+    color: #7a7979;
+}
+
+label{
+    color: #7a7979;
 }
 
 .wrapper {
