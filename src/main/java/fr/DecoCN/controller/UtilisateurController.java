@@ -1,5 +1,8 @@
 package fr.DecoCN.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -49,5 +52,23 @@ public class UtilisateurController {
         // Efface le contexte de sécurité
         SecurityContextHolder.clearContext();
 		return "redirect:/";
+	}
+	
+	
+	@GetMapping("/private/liste_users")
+	String listeUsers(Model model) {
+		List<Utilisateur> listeUsers = new ArrayList<Utilisateur>();
+		List<Utilisateur> listeUsersAdmin = new ArrayList<Utilisateur>();
+		
+		listeUsers.addAll(utilisateurService.consulterUtilisateurs());
+		
+		for (Utilisateur user : listeUsers) {
+			if(user.getRole().getLibelle().equals("ADMIN")) {
+				listeUsersAdmin.add(user);
+			}
+		}
+		
+		model.addAttribute("listeUsers", listeUsersAdmin);
+		return "home/liste_users";
 	}
 }

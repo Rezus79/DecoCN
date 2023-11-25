@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="fr"
+xmlns:th="http://www.thymeleaf.org"
+layout:decorate="~{layouts/main-layout}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Index</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/style.css}">
+  </head>
+  <body>
+	  
+	    <main layout:fragment="content">
+            <div class="text-center mt-5 mb-5">
+                <h1>liste des utilisateurs admin</h1>
+            </div>
+            <div class="text-center mt-3 col-6 offset-3 d-grid">
+                
+                <table class="table table-dark table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>email</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-light">
+                        <tr th:each="user : ${listeUsers}">
+                            <td th:text="${user.id}"></td>
+                            <td th:text="${user.email}"></td>
+                            <td>
+                                <a id="lien1" class="btn btn-outline-secondary" th:href="@{/private/detail(id=${user.id})}"><i > Détail</i></a>
+                                <a id="lien1" class="btn btn-outline-warning" th:href="@{/private/modifier(id=${user.id})}"><i > Modifier</i></a>
+                                <a id="lien1" class="btn btn-outline-danger" th:href="@{/private/modifier(id=${user.id})}"><i > Supprimer</i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="text-center">
+                    <button id="lien1" type="button" class="btn btn-outline-secondary mt-5" ><a class="nav-link" th:href="@{/private/gerer}">Retour</a></button>
+                </div>
+            </div>
+        </main>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+  </body>
+</html>
