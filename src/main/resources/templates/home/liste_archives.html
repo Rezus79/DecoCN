@@ -31,6 +31,7 @@ layout:decorate="~{layouts/main-layout}">
                             <td th:text="${fiche.email}"></td>
                             <td>
                                 <a id="lien1" class="btn btn-outline-secondary" th:href="@{/private/detailArchives(id=${fiche.id})}"><i > Détail</i></a>
+                                <a id="lien1" class="btn btn-outline-danger" th:href="@{/private/modifier_archives(id=${fiche.id})}"><i > Modifier</i></a>
                                 <a id="lien1" class="btn btn-outline-danger" th:href="@{/private/modifier(id=${fiche.id})}"><i > Supprimer</i></a>
                             </td>
                         </tr>

@@ -34,12 +34,15 @@ public class Archives {
 	private boolean validation;
 
 	private boolean refus;
-
+	
+	@Column(length = 500)
+	private String commentaire;
+	
 	public Archives() {
 	}
 
 	public Archives(Long id, String email, String support, String longueur, String largeur, String nomDeFichier,
-			byte[] contenu, boolean validation, boolean refus) {
+			byte[] contenu, boolean validation, boolean refus, String commentaire) {
 		this.id = id;
 		this.email = email;
 		this.support = support;
@@ -49,6 +52,7 @@ public class Archives {
 		this.contenu = contenu;
 		this.validation = validation;
 		this.refus = refus;
+		this.commentaire = commentaire;
 	}
 
 	public Long getId() {
@@ -122,5 +126,15 @@ public class Archives {
 	public void setRefus(boolean refus) {
 		this.refus = refus;
 	}
+
+	public String getCommentaire() {
+		return commentaire;
+	}
+
+	public void setCommentaire(String commentaire) {
+		this.commentaire = commentaire;
+	}
+	
+	
 
 }
