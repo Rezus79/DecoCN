@@ -155,7 +155,17 @@ public class FicheController {
 		return "home/liste_refus";
 	}
 	
+	@GetMapping("/private/supprimer")
+	String supprimerFiche(@PathParam("id") long id,Model model) {
+		model.addAttribute("fiche", ficheService.getFicheById(id));
+		return "home/supprimer";
+	}
 	
+	@PostMapping("/private/supprimer")
+	String supprimerFiche(@RequestParam("file") MultipartFile file,Fiche fiche) {
+		ficheService.supprimerFiche(fiche.getId());
+		return "home/liste_refus";
+	}
 	
 	
 	
