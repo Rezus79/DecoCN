@@ -1,6 +1,7 @@
 package fr.DecoCN.controller;
 
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,7 +73,10 @@ public class FicheController {
 	
 	@GetMapping("/private/detail")
 	String fichedetail(@PathParam("id") long id, Model model) {
-		model.addAttribute("fiche" , ficheService.getFicheById(id));
+		Fiche fiche = ficheService.getFicheById(id);
+		String base64Image = Base64.getEncoder().encodeToString(fiche.getContenu());
+		model.addAttribute("fiche" , fiche);
+		model.addAttribute("base64Image", base64Image);
 		return "home/detail";
 	}
 	

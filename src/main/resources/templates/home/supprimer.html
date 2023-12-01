@@ -16,7 +16,7 @@ layout:decorate="~{layouts/main-layout}">
                 <h1>Détail de la demande</h1>
             </div>
             
-            <form th:action="@{/private/modifier}" method="post" enctype="multipart/form-data">
+            <form th:action="@{/private/supprimer}" method="post" enctype="multipart/form-data">
             <div class="col-4 offset-4 mb-3">
                 <div class="mb-3" >
                     <label for="id" class="form-label">Id</label>
@@ -49,7 +49,7 @@ layout:decorate="~{layouts/main-layout}">
                   </div>
 
                   <button type="submit"  class="btn btn-info"><a class="nav-link">Valider</a></button>
-                <button type="button"  class="btn btn-outline-secondary"><a class="nav-link" th:href="@{/private/gerer}">Retour</a></button>
+                <button type="button"  class="btn btn-secondary"><a class="nav-link" th:href="@{/private/gerer}">Retour</a></button>
               
             </div>
             </form>

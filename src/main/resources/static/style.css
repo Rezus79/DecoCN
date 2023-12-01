@@ -9,6 +9,11 @@ main{
     
 }
 
+img{
+    height: 10em;
+    width: 8em;
+}
+
 h1{
     color: #7a7979;
 }

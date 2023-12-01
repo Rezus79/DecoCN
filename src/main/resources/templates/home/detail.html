@@ -26,7 +26,7 @@ layout:decorate="~{layouts/main-layout}">
                   </div>
                 <div class="mb-3">
                   <label for="support" class="form-label">Support</label>
-                  <input type="text" class="form-control" id="email"  th:value="${fiche.support}" readonly>
+                  <input type="text" class="form-control" id="support"  th:value="${fiche.support}" readonly>
                 </div>
                 <div class="mb-3">
                   <h6>Dimension</h6>
@@ -38,12 +38,17 @@ layout:decorate="~{layouts/main-layout}">
                 <div class="mb-3" >
                     <label for="nomDeFichier" class="form-label">Nom de fichier</label>
                     <input class="form-control" id="nomDeFichier" th:value="${fiche.nomDeFichier}" readonly>  
+                    <div class="mt-3">
+                      <label for="apercu" class="form-label" >apercu de l'image :</label>
+                      <img class="form-check" id="apercu" th:src="@{'data:image/jpeg;base64,' + ${base64Image}}" alt="Image">
+                    </div>
                     <a th:href="@{'/private/detail/' + ${fiche.id} + '/download'}">Télécharger le fichier</a>
                   </div>
                 <div class="form-check form-switch mb-3">
                   <label for="validation" class="form-check-label">Validation</label>
                   <input type="checkbox" role="switch" class="form-check-input" id="validation"  th:value="${fiche.validation}" readonly>
                 </div>
+                
                 <div class="form-check form-switch mb-3">
                     <label for="refus" class="form-check-label">Refus</label>
                     <input type="checkbox" role="switch" class="form-check-input" id="refus"  th:value="${fiche.refus}" readonly>
