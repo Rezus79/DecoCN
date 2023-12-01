@@ -9,6 +9,7 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import fr.DecoCN.bo.Archives;
 import fr.DecoCN.bo.Utilisateur;
 import fr.DecoCN.dal.UtilisateurRepository;
 
@@ -36,9 +37,9 @@ public class UtilisateurServiceImpl implements UtilisateurService{
 	}
 
 	@Override
-	public Optional<Utilisateur> getUtilisateurById(Long id) {
-		// TODO Auto-generated method stub
-		return utilisateurRepository.findById(id);
+	public Utilisateur getUtilisateurById(Long id) {
+		Optional<Utilisateur> utilisateurOptional = utilisateurRepository.findById(id);
+		return utilisateurOptional.orElse(null);
 	}
 
 	@Override

@@ -1,6 +1,7 @@
 package fr.DecoCN.controller;
 
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,14 +69,20 @@ public class ArchivesController {
 	
 	@GetMapping("/private/detailArchives")
 	String fichedetailArchives(@PathParam("id") long id, Model model) {
-		model.addAttribute("fiche" , archivesService.getArchivesById(id));
+		Archives fiche = archivesService.getArchivesById(id);
+		String base64Image = Base64.getEncoder().encodeToString(fiche.getContenu());
+		model.addAttribute("fiche" , fiche);
+		model.addAttribute("base64Image", base64Image);
 		return "home/detail_archives";
 	}
 	
 	
 	@GetMapping("/private/modifier_archives")
 	String modifierArchives(@PathParam("id") long id,Model model) {
-		model.addAttribute("fiche", archivesService.getArchivesById(id));
+		Archives fiche = archivesService.getArchivesById(id);
+		String base64Image = Base64.getEncoder().encodeToString(fiche.getContenu());
+		model.addAttribute("fiche" , fiche);
+		model.addAttribute("base64Image", base64Image);
 		return "home/modifier_archives";
 	}
 	

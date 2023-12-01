@@ -1,6 +1,7 @@
 package fr.DecoCN.controller;
 
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +13,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import fr.DecoCN.bll.UtilisateurService;
+import fr.DecoCN.bo.Fiche;
 import fr.DecoCN.bo.Utilisateur;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.websocket.server.PathParam;
 
 
 
@@ -70,5 +73,22 @@ public class UtilisateurController {
 		
 		model.addAttribute("listeUsers", listeUsersAdmin);
 		return "home/liste_users";
+	}
+	
+	
+	@GetMapping("/private/detail_user")
+	String userDetail(@PathParam("id") long id, Model model) {
+
+		model.addAttribute("user" , utilisateurService.getUtilisateurById(id));
+
+		return "home/detail_user";
+	}
+	
+	@GetMapping("/private/modifier_user")
+	String userModifier(@PathParam("id") long id, Model model) {
+
+		model.addAttribute("user" , utilisateurService.getUtilisateurById(id));
+
+		return "home/modifier_user";
 	}
 }

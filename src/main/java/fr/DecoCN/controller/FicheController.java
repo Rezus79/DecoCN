@@ -100,7 +100,10 @@ public class FicheController {
 	
 	@GetMapping("/private/modifier")
 	String modifierFiche(@PathParam("id") long id,Model model) {
-		model.addAttribute("fiche", ficheService.getFicheById(id));
+		Fiche fiche = ficheService.getFicheById(id);
+		String base64Image = Base64.getEncoder().encodeToString(fiche.getContenu());
+		model.addAttribute("fiche" , fiche);
+		model.addAttribute("base64Image", base64Image);
 		return "home/modifier";
 	}
 	
