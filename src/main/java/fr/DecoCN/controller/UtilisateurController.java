@@ -52,7 +52,7 @@ public class UtilisateurController {
         cookie.setPath("/"); 
         response.addCookie(cookie);
 
-        // Efface le contexte de sécurité
+      
         SecurityContextHolder.clearContext();
 		return "redirect:/";
 	}
@@ -90,5 +90,15 @@ public class UtilisateurController {
 		model.addAttribute("user" , utilisateurService.getUtilisateurById(id));
 
 		return "home/modifier_user";
+	}
+	
+	@PostMapping("/private/modifier_user")
+	String userModifier(@PathParam("id") Long id, Utilisateur utilisateur) {
+		Utilisateur existingUser = utilisateurService.getUtilisateurById(id);
+		existingUser.setEmail(utilisateur.getEmail());
+		existingUser.setNom(utilisateur.getNom());
+		existingUser.setPrenom(utilisateur.getPrenom());
+		utilisateurService.modifierUtilisateur(existingUser, existingUser.getId());
+		return "redirect:/private/liste_users";
 	}
 }

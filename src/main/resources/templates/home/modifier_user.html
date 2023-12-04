@@ -17,6 +17,10 @@ layout:decorate="~{layouts/main-layout}">
             </div>
             <form th:action="@{/private/modifier_user}" method="post">
                 <div class="col-4 offset-4 mb-3">
+                  <div class="mb-3" hidden>
+                    <label for="id" class="form-label">id</label>
+                    <input type="text" class="form-control" id="id"  th:field="${user.id}" readonly>
+                  </div>
                   <div class="mb-3" >
                       <label for="type" class="form-label">Type d'utilisateur</label>
                       <input type="text" class="form-control" id="type"  th:field="${user.role.libelle}" readonly>
