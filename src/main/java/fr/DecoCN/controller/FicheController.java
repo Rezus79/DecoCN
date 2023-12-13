@@ -20,7 +20,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import fr.DecoCN.bll.ArchivesService;
 import fr.DecoCN.bll.FicheService;
-import fr.DecoCN.bo.Archives;
 import fr.DecoCN.bo.Fiche;
 import jakarta.websocket.server.PathParam;
 

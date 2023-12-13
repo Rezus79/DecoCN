@@ -80,6 +80,7 @@ public class SecurityConfig {
 	        		.roles(utilisateur.getRole().getLibelle())
 	                .build();
 	        
+	        
 	        mem.createUser(userDetails);
 	        
 	    }

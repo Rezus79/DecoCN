@@ -1,11 +1,12 @@
 package fr.DecoCN.controller;
 
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import fr.DecoCN.bll.UtilisateurService;
-import fr.DecoCN.bo.Fiche;
 import fr.DecoCN.bo.Utilisateur;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
@@ -101,4 +101,34 @@ public class UtilisateurController {
 		utilisateurService.modifierUtilisateur(existingUser, existingUser.getId());
 		return "redirect:/private/liste_users";
 	}
+	
+	@GetMapping("/private/supprimer_user")
+	String userSupprimer(@PathParam("id") long id, Model model) {
+		model.addAttribute("user", utilisateurService.getUtilisateurById(id));
+		return "home/supprimer_user";
+	}
+	
+	@PostMapping("/private/supprimer_user")
+	String userSupprimer(@PathParam("id") long id) {
+		utilisateurService.supprimerUtilisateur(id);
+		return "redirect:/private/liste_users";
+	}
+	
+	@GetMapping("/private/change_mdp")
+	String changeMdp(Model model) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		User userDetails = (User) authentication.getPrincipal();
+        String username = userDetails.getUsername(); 
+        
+        Utilisateur user = utilisateurService.findByEmail(username);
+        
+        Long IdUser = user.getId();
+
+        
+		model.addAttribute("user", utilisateurService.getUtilisateurById(IdUser));
+	
+		return "home/change_mdp";
+	}
+	
+	
 }
